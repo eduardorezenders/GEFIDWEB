@@ -1,0 +1,103 @@
+﻿@model EntidadesDAL.controle
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("idCliente", Session["ULIDC"])
+
+    <div class="row">
+        <div class="col-md-12 text-left">
+            <h4>Controles</h4>
+            @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-default glyphicon glyphicon-hand-left", @title = "Voltar para lista" })
+            <input type="submit" value="Salvar" class="btn btn-primary" />
+        </div>
+    </div>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            @Html.LabelFor(model => model.envioAuto, "SMS Automático", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                <div class="checkbox-inline">
+                    @Html.EditorFor(model => model.envioAuto, new { htmlAttributes = new { @name = "envioAuto", @onClick = "habilita();" } })
+                </div>
+                @Html.ValidationMessageFor(model => model.envioAuto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row"></div><br />
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.priSms, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.priSms, new { htmlAttributes = new { @class = "form-control", disabled = true } })
+                @Html.ValidationMessageFor(model => model.priSms, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.segSms, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.segSms, new { htmlAttributes = new { @class = "form-control", disabled = true } })
+                @Html.ValidationMessageFor(model => model.segSms, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.terSms, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.terSms, new { htmlAttributes = new { @class = "form-control", disabled = true } })
+                @Html.ValidationMessageFor(model => model.terSms, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.quaSms, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.quaSms, new { htmlAttributes = new { @class = "form-control", disabled = true } })
+                @Html.ValidationMessageFor(model => model.quaSms, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.quiSms, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.quiSms, new { htmlAttributes = new { @class = "form-control", disabled = true } })
+                @Html.ValidationMessageFor(model => model.quiSms, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.aCada, "Ou a cada", htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.aCada, new { htmlAttributes = new { @class = "form-control", disabled = true } })
+                @Html.ValidationMessageFor(model => model.aCada, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row"></div><br />
+
+    <div class="row col-md-9">
+        @Html.LabelFor(model => model.facebook, htmlAttributes: new { @class = "control-label col-md-1" })
+        <div class="col-md-5">
+            @Html.EditorFor(model => model.facebook, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.priSms, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row"></div><br />
+
+    <div class="row col-md-9">
+        <div class="form-group">
+            @Html.LabelFor(model => model.whatsapp, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.whatsapp, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.priSms, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

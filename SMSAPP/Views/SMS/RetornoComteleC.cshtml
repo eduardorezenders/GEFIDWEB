@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "RSMSEC";
+}
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>SMS Relatórios</h4>
+        <h5>Relatório de SMS enviados - Consolidado</h5>
+        @Html.ActionLink(" ", "RSMSEC", null, new { @class = "btn btn-default glyphicon glyphicon-hand-left", @title = "Voltar para lista" })
+    </div>
+</div>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("SMS Aceitos")
+        </th>
+        <th>
+            @Html.DisplayName("Período")
+        </th>
+        <th>
+            @Html.DisplayName("SMS Entregues")
+        </th>
+        <th>
+            @Html.DisplayName("SMS Expirados")
+        </th>
+        <th>
+            @Html.DisplayName("SMS Rejeitados")
+        </th>
+        <th>
+            @Html.DisplayName("SMS Respondidos")
+        </th>
+        <th>
+            @Html.DisplayName("SMS Não Entregues")
+        </th>
+        <th>
+            @Html.DisplayName("Total")
+        </th>
+    </tr>
+
+    @foreach (var item in ViewBag.retornoComtele.Object) {
+        <tr>
+            <td>
+                @item.Accepted
+            </td>
+            <td>
+                @item.Date
+            </td>
+            <td>
+                @item.Delivered
+            </td>
+            <td>
+                @item.Expired
+            </td>
+            <td>
+                @item.Rejected
+            </td>
+            <td>
+                @item.Reply
+            </td>
+            <td>
+                @item.Undelivered
+            </td>
+            <td>
+                <strong>@item.Total</strong>
+            </td>
+        </tr>
+    }
+</table>

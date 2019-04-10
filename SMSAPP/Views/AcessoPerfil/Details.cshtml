@@ -1,0 +1,75 @@
+﻿@model EntidadesDAL.acessoPerfil
+
+@{
+    ViewBag.Title = "SMSAPP";
+}
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>Perfis</h4>
+        @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-default glyphicon glyphicon-hand-left", @title = "Voltar para lista" })
+        @Html.ActionLink(" ", "Edit", new { id = Model.idPerfil }, new { @class = "btn btn-default glyphicon glyphicon-edit", @title = "Editar Subseção" })
+    </div>
+</div>
+<hr />
+
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Grupo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.acessoGrupo.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Módulo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.acessoModulo.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Alterar")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.al)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Deletar")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ap)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Criar")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cr)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Exportar")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ex)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Ler")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.le)
+        </dd>
+
+    </dl>
+

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<EntidadesSOL.tipoContato>
+
+@{
+    Layout = "~/Views/Shared/_LayoutPDF.cshtml";
+    ViewBag.Title = "_PDFView";
+}
+
+<h3>Tipos de Contato</h3>
+
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idTipoAssunto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ativo)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idTipoAssunto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ativo)
+        </td>
+
+    </tr>
+}
+
+</table>

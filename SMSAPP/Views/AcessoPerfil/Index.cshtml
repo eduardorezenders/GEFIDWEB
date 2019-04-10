@@ -1,0 +1,76 @@
+﻿@model IEnumerable<EntidadesDAL.acessoPerfil>
+
+@{
+    ViewBag.Title = "SMSAPP";
+    string[,] perfil = (string[,])Session["ULPR"];
+}
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>Perfis</h4>
+        @Html.ActionLink(" ", "Create", null, new { @class = "btn btn-default glyphicon glyphicon-file", @title = "Novo Perfil" })
+        @*@Html.ActionLink(" ", "ExportE", null, new { @class = "btn btn-default glyphicon glyphicon-export", @title = "Exportar para o Excel" })
+        @Html.ActionLink(" ", "ExportP", null, new { @class = "btn btn-default glyphicon glyphicon-print", @title = "Imprimir para PDF" })*@
+    </div>
+</div>
+<br />
+
+    <table class="table table-condensed table-striped" style="width:100%;">
+        <tr>
+            <th>
+                @Html.DisplayName("Grupo")
+            </th>
+            <th>
+                @Html.DisplayName("Módulo")
+            </th>
+            <th>
+                @Html.DisplayName("Alterar")
+            </th>
+            <th>
+                @Html.DisplayName("Excluir")
+            </th>
+            <th>
+                @Html.DisplayName("Criar")
+            </th>
+            <th>
+                @Html.DisplayName("Exportar")
+            </th>
+            <th>
+                @Html.DisplayName("Ler")
+            </th>
+            <th>Ações</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.acessoGrupo.nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.acessoModulo.descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.al)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cr)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ex)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.le)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.idPerfil }, new { @class = "btn btn-default btn-xs glyphicon glyphicon-edit", @title = "Editar Perfil" })
+                    @Html.ActionLink(" ", "Details", new { id = item.idPerfil }, new { @class = "btn btn-default btn-xs glyphicon glyphicon-list-alt", @title = "Detalhes do Perfil" })
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.idCausa })*@
+                </td>
+            </tr>
+        }
+
+    </table>

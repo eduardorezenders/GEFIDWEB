@@ -1,0 +1,92 @@
+﻿@model EntidadesDAL.acesso
+
+@{
+    ViewBag.Title = "Acessos";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h4>Acessos</h4>
+                @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-default glyphicon glyphicon-hand-left", @title = "Voltar para lista" })
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </div>
+        <hr />
+ 
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.idLogin)
+                @Html.Hidden("idCliente", Session["ULIDC"])
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.cpf, "CPF", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.cpf, new { htmlAttributes = new { @class = "form-control", @disabled=true } })
+                        @Html.ValidationMessageFor(model => model.cpf, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.nome, "Nome", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control uppercase" } })
+                        @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sobrenome, "Sobrenome", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.sobrenome, new { htmlAttributes = new { @class = "form-control uppercase" } })
+                        @Html.ValidationMessageFor(model => model.sobrenome, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.email, "E-mail", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.senha, "Senha", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.senha, new { htmlAttributes = new { @class = "form-control", disabled=true } })
+                        @Html.ValidationMessageFor(model => model.senha, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.idGrupo, "Grupo", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("idGrupo", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.idGrupo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ativo, "Ativo?", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.ativo)
+                            @Html.ValidationMessageFor(model => model.ativo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Salvar" class="btn btn-primary" />
+                    </div>
+                </div>*@
+            </div>
+ }
+

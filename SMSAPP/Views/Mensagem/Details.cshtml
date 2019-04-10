@@ -1,0 +1,54 @@
+﻿@model EntidadesDAL.mensagem
+
+@{
+    ViewBag.Title = "SMSAPP";
+}
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>Mensagens</h4>
+        @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-default glyphicon glyphicon-hand-left", @title = "Voltar para lista" })
+        @Html.ActionLink(" ", "Edit", new { id = Model.idMensagem }, new { @class = "btn btn-default glyphicon glyphicon-edit", @title = "Editar mensagem" })
+    </div>
+</div>
+<hr />
+<div>
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.texto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.texto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dtCriacao)
+        </dt>
+
+        <dd>
+            @{ string datacricao = String.Format("{0:dd/MM/yyyy}", Model.dtCriacao); }
+            @Html.DisplayName(datacricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dtAltercao)
+        </dt>
+
+        <dd>
+            @{ string dataalteracao = String.Format("{0:dd/MM/yyyy}", Model.dtAltercao); }
+            @Html.DisplayName(dataalteracao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ativo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ativo)
+        </dd>
+
+    </dl>
+</div>
+

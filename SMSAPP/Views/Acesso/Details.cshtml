@@ -1,0 +1,69 @@
+﻿@model EntidadesDAL.acesso
+
+@{
+    ViewBag.Title = "Acessos";
+}
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>Acessos</h4>
+        @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-default glyphicon glyphicon-hand-left", @title = "Voltar para lista" })
+        @Html.ActionLink(" ", "Edit", new { id = Model.idLogin }, new { @class = "btn btn-default glyphicon glyphicon-edit", @title = "Editar Grupo" })
+    </div>
+</div>
+<hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayName("CPF")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cpf)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Nome ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Sobrenome ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sobrenome)
+        </dd>
+        <dt>
+            @Html.DisplayName("Grupo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.acessoGrupo.nome)
+        </dd>
+        <dt>
+            @Html.DisplayName("E-mail")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Senha ")
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.senha)*@
+        </dd>
+        <dt>
+            @Html.DisplayName("Ativo?")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ativo)
+        </dd>
+    </dl>

@@ -1,0 +1,58 @@
+﻿@model SMSAPP.ViewModels.ImportacaoVM
+@{
+    ViewBag.Title = "Importacao";
+}
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>Importar Contatos</h4>
+    </div>
+</div>
+<br />
+<hr />
+
+<div class="form-horizontal">
+    <input id="files" name="files" type="file" class="form-control btn-primary" accept=".xls,.xlsx" onchange="pegarArquivo(this);" />
+    <p id="atributos"></p>
+</div>
+
+<br />
+
+@using (Html.BeginForm("Importacao", "Pessoa", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.arquivo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.arquivo, new { htmlAttributes = new { @class = "form-control", @id="arquivo" } })
+                @Html.ValidationMessageFor(model => model.arquivo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="carregar" type="submit" value="Carregar planilha" class="btn btn-primary" title="Carregar planilha" disabled/>
+            </div>
+        </div>
+    </div>
+}
+
+    <script>
+        function pegarArquivo(arquivoSelecionado) {
+            if (arquivoSelecionado.files) {
+                var file = arquivoSelecionado.files[0];
+                document.getElementById('atributos').innerHTML = ' Nome do arquivo: ' + file.name + ';  tipo do arquivo: ' + file.type + ';  tamanho do arquivo: ' + Math.round(file.size / 1024) + ' Kbytes'
+                document.getElementById('arquivo').value = file.name;
+                document.getElementById('carregar').disabled = false;
+            }
+            else {
+                alert("Nenhum arquivo selecionado!!");
+                return false;
+            }
+        }
+    </script>
+

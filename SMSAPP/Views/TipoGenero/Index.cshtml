@@ -1,0 +1,54 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<EntidadesDAL.tipoGenero>
+@{
+    ViewBag.Title = "SMSAPP";
+    string[,] perfil = (string[,])Session["ULPR"];
+}
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>Gêneros</h4>
+        @Html.ActionLink(" ", "Create", null, new { @class = "btn btn-default glyphicon glyphicon-file", @title = "Novo gênero" })
+        @Html.ActionLink(" ", "GeraPDF", null, new { @class = "btn btn-default glyphicon glyphicon-print", @title = "Imprimir para PDF" })
+    </div>
+</div>
+<br />
+
+<table class="table table-condensed table-striped" style="width:100%;">
+    <tr>
+        <th>
+            @Html.DisplayName("Gênero")
+        </th>
+        <th>
+            @Html.DisplayName("Descrição")
+        </th>
+        <th>
+            @Html.DisplayName("Ativo")
+        </th>
+        <th>Ações</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idGenero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ativo)
+            </td>
+            <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.idGenero }, new { @class = "btn btn-default btn-xs glyphicon glyphicon-edit", @title = "Editar gênero" })
+                @Html.ActionLink(" ", "Details", new { id = item.idGenero }, new { @class = "btn btn-default btn-xs glyphicon glyphicon-list-alt", @title = "Detalhes do gênero" })
+            </td>
+        </tr>
+    }
+</table>
+
+<br />
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<EntidadesDAL.acessoGrupo>
+
+@{
+    ViewBag.Title = "SMSAPP";
+    string[,] perfil = (string[,])Session["ULPR"];
+}
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>Grupos</h4>
+        @Html.ActionLink(" ", "Create", null, new { @class = "btn btn-default glyphicon glyphicon-file", @title = "Novo grupo" })
+        @*@Html.ActionLink(" ", "ExportE", null, new { @class = "btn btn-default glyphicon glyphicon-export", @title = "Exportar para o Excel" })
+        @Html.ActionLink(" ", "ExportP", null, new { @class = "btn btn-default glyphicon glyphicon-print", @title = "Imprimir para PDF" })*@
+    </div>
+</div>
+<br />
+
+    <table class="table table-condensed table-striped" style="width:100%;">
+        <tr>
+            <th>
+                @Html.DisplayName("Grupo")
+            </th>
+            <th>
+                @Html.DisplayName("Deletar")
+            </th>
+            <th>
+                @Html.DisplayName("Ativo")
+            </th>
+            <th>Ações</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.deletar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ativo)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.IdGrupo }, new { @class = "btn btn-default btn-xs glyphicon glyphicon-edit", @title = "Editar grupo" })
+                    @Html.ActionLink(" ", "Details", new { id = item.IdGrupo }, new { @class = "btn btn-default btn-xs glyphicon glyphicon-list-alt", @title = "Detalhes da grupo" })
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.idCausa })*@
+                </td>
+            </tr>
+        }
+
+    </table>
+  
+

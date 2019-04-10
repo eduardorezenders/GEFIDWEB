@@ -1,0 +1,37 @@
+﻿@model SMSAPP.ViewModels.PesquisaDTVM
+
+@{
+    ViewBag.Title = "CSU";
+}
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>SMS Relatórios</h4>
+        <h5>Consulte o saldo de seu usuário</h5>
+    </div>
+</div>
+<hr />
+
+@using (Html.BeginForm("CSU2a","SMS"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Gerar Relatório" class="btn btn-primary" onclick="JavascriptFunction();" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+

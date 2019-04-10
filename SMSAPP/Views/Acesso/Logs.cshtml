@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Logs";
+}
+
+<h3>Logs</h3>
+
+<br />
+
+@using (Html.BeginForm())
+{
+        <div class="input-group col-lg-12">
+            <input type="text" class="form-control" id="SearchString" name="SearchString" placeholder="Informe o Usúario ou CPF">
+            <div class="input-group-btn col-lg-2">
+                <button type="submit" value="Pesquisar" name="btn" title="Pesquisar logs" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+}
+
+<br />
+
+<div class="row col-md-12">
+
+    @if (Model != null) { Html.RenderPartial("_Logs"); }
+
+</div>

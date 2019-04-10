@@ -1,0 +1,55 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<EntidadesDAL.campanha>
+@{
+    ViewBag.Title = "Index";
+    string[,] perfil = (string[,])Session["ULPR"];
+}
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>Campanhas</h4>
+        @Html.ActionLink(" ", "Create", null, new { @class = "btn btn-default glyphicon glyphicon-file", @title = "Nova campanha" })
+        @Html.ActionLink(" ", "GeraPDF", null, new { @class = "btn btn-default glyphicon glyphicon-print", @title = "Imprimir para PDF" })
+    </div>
+</div>
+<br />
+<table class="table table-condensed table-striped">
+    <tr>
+        <th>
+            @Html.DisplayName("Nome")
+        </th>
+        <th>
+            @Html.DisplayName("Data Cricação")
+        </th>
+        <th>
+            @Html.DisplayName("Ativo")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nome)
+            </td>
+            <td>
+                @{string dtc = String.Format("{0:dd/MM/yyyy}", item.dtCriacao); }
+                @Html.DisplayName(dtc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ativo)
+            </td>
+            <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.idCampanha }, new { @class = "btn btn-default btn-xs glyphicon glyphicon-edit", @title = "Editar campanha" })
+                @Html.ActionLink(" ", "Details", new { id = item.idCampanha }, new { @class = "btn btn-default btn-xs glyphicon glyphicon-list-alt", @title = "Detalhes da campanha" })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

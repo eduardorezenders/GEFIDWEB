@@ -1,0 +1,72 @@
+﻿@model SMSAPP.ViewModels.PesquisaDTVM
+
+@{
+    ViewBag.Title = "RRSMSE";
+}
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>SMS Relatórios</h4>
+        <h5>Relatório de respostas dos SMS enviados</h5>
+    </div>
+</div>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.numero, "Telefone", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="radio col-md-10">
+                @Html.EditorFor(model => model.numero, new { htmlAttributes = new { @class = "form-control", @onkeypress = "return SomenteNumero(event)" } })
+                @Html.ValidationMessageFor(model => model.numero, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dtInicial, "Data Inicial", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dtInicial, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dtInicial, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dtFinal, "Data Final", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dtFinal, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dtFinal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Gerar Relatório" class="btn btn-primary" onclick="JavascriptFunction();" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        function SomenteNumero(e) {
+            var tecla = (window.event) ? event.keyCode : e.which;
+            if ((tecla > 47 && tecla < 58)) return true;
+            else {
+                if (tecla == 8 || tecla == 0) return true;
+                else return false;
+            }
+        }
+    </script>
+}
+
+
+

@@ -1,0 +1,353 @@
+﻿@model SMSAPP.ViewModels.PessoaVM
+@{
+    ViewBag.Title = "SMSAPP";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="row">
+        <div class="col-md-12 text-left">
+            <h4>Contato</h4>
+            @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-default glyphicon glyphicon-hand-left", @title = "Voltar para lista" })
+            <input type="submit" value="Incluir" class="btn btn-primary" title="Incluir contato" />
+        </div>
+    </div>
+    <hr />
+
+    <div class="container-fluid">
+        <div class="col-lg-6">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.nomeCompleto, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.nomeCompleto, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.nomeCompleto, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.dataNascimento, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.dataNascimento, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.dataNascimento, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.cpf, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.cpf, new { htmlAttributes = new { @class = "form-control", @name = "cpf", @onkeypress = "return SomenteNumero(event)" } })
+                        @Html.ValidationMessageFor(model => model.cpf, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.idGenero, "Genêro", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("idGenero", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.idGenero, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.facebook, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.facebook, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.facebook, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.whatsapp, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.whatsapp, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.whatsapp, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ativo, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.ativo)
+                            @Html.ValidationMessageFor(model => model.ativo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Telefones</a></h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="form">
+                                <div class="form-group">
+                                    <div class="row col-md-12">
+                                        <div>@Html.LabelFor(model => model.telefone.pais, "País", htmlAttributes: new { @class = "control-label col-md-1" })</div>
+                                        <div class="col-md-2">
+                                            @Html.EditorFor(model => model.telefone.pais, new { htmlAttributes = new { @class = "form-control", @Value = "55", @onkeypress = "return SomenteNumero(event)" } })
+                                        </div>
+
+                                        <div>@Html.LabelFor(model => model.telefone.ddd, "DDD", htmlAttributes: new { @class = "control-label col-md-1" })</div>
+                                        <div class="col-md-2">
+                                            @Html.EditorFor(model => model.telefone.ddd, new { htmlAttributes = new { @class = "form-control", @Value = "21", @onkeypress = "return SomenteNumero(event)" } })
+                                        </div>
+
+                                        <div>@Html.LabelFor(model => model.telefone.numero, "Número", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                                        <div class="col-md-4">
+                                            @Html.EditorFor(model => model.telefone.numero, new { htmlAttributes = new { @class = "form-control", @onkeypress = "return SomenteNumero(event)" } })
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-12"><br /></div>
+                                    <div class="row col-md-12">
+                                        <div>@Html.LabelFor(model => model.telefone.idTipoTelefone, "Tipo", htmlAttributes: new { @class = "control-label col-md-1" })</div>
+                                        <div class="col-md-4">
+                                            @Html.DropDownList("idTipoTelefone", null, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+
+                                        <div>@Html.LabelFor(model => model.telefone.ativo, "Ativo", htmlAttributes: new { @class = "control-label col-md-2" })</div>
+                                        <div class="col-md-3">
+                                            <div class="checkbox">
+                                                @Html.EditorFor(model => model.telefone.ativo, new { htmlAttributes = new { @Value = true } })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-12">
+                                        <br />
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Endereço</a></h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="form">
+                                <div class="form-group">
+                                    <div class="row col-md-12">
+                                        <div class="col-md-1">
+                                            @Html.LabelFor(model => model.logradouro.cep, "CEP", htmlAttributes: new { @class = "control-label" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="cep" id="cep" onblur="BuscaCEP()" onkeypress="return SomenteNumero(event)">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            @Html.LabelFor(model => model.logradouro.idTipoLogradouro, "Tipo", htmlAttributes: new { @class = "control-label" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.DropDownList("idTipoLogradouro", null, String.Empty, htmlAttributes: new { @class = "form-control", id = "idTipoLogradouro" })
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-12"><br /></div>
+                                    <div class="row col-md-12">
+                                        <div class="col-md-2">
+                                            @Html.LabelFor(model => model.logradouro.endereco, "Endereço", htmlAttributes: new { @class = "control-label" })
+                                        </div>
+                                        <div class="col-md-6">
+                                            @Html.Editor("endereco", new { htmlAttributes = new { @class = "form-control", @id = "endereco" } })
+                                        </div>
+                                        <div class="col-md-1">
+                                            @Html.LabelFor(model => model.logradouro.numero, "N°", htmlAttributes: new { @class = "control-label" })
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.EditorFor(model => model.logradouro.numero, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-12"><br /></div>
+                                    <div class="row col-md-12">
+                                        <div class="col-md-3">
+                                            @Html.LabelFor(model => model.logradouro.complemento, "Complemento", htmlAttributes: new { @class = "control-label" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.EditorFor(model => model.logradouro.complemento, new { htmlAttributes = new { @class = "form-control", id = "complemento" } })
+                                        </div>
+                                        <div class="col-md-1">
+                                            @Html.LabelFor(model => model.logradouro.uf, "UF", htmlAttributes: new { @class = "control-label" })
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.DropDownList("uf", null, String.Empty, htmlAttributes: new { @class = "form-control", id = "uf", onchange = "MontaCidade();" })
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-12"><br /></div>
+                                    <div class="row col-md-12">
+                                        <div class="col-md-2">
+                                            @Html.Label("Cidade", htmlAttributes: new { @class = "control-label" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select id="idCidade" name="idCidade" class="form-control text-uppercase" onchange="MontaBairro();" disabled><option></option></select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            @Html.Label("Bairro", htmlAttributes: new { @class = "control-label" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select id="idBairro" name="idBairro" class="form-control text-uppercase" disabled><option></option></select>
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-12"><br /></div>
+                                    <div class="row col-md-12">
+                                        <div class="col-md-3">
+                                            @Html.Label("Tipo Endereço", htmlAttributes: new { @class = "control-label" })
+                                        </div>
+                                        <div class="col-md-4">
+                                            @Html.DropDownList("idTipoEndereco", null, String.Empty, htmlAttributes: new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-md-3">
+                                            @Html.Label("Correpondência", htmlAttributes: new { @class = "control-label" })
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="checkbox">
+                                                @Html.EditorFor(model => model.logradouro.correspondencia)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse3">E-mails </a></h4>
+                    </div>
+                    <div id="collapse3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="form">
+                                <div class="form-group">
+                                    <div class="row col-md-12">
+                                        <div class="col-md-2">@Html.LabelFor(model => model.email.conteudo, "Conteúdo", htmlAttributes: new { @class = "control-label " })</div>
+                                        <div class="col-md-6">
+                                            @Html.EditorFor(model => model.email.conteudo, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+
+                                        <div class="col-md-2">@Html.LabelFor(model => model.email.redeSocial, "Rede Social", htmlAttributes: new { @class = "control-label " })</div>
+                                        <div class="col-md-2">
+                                            <div class="checkbox">
+                                                @Html.EditorFor(model => model.email.redeSocial)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div id="jsGrid"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        function BuscaCEP() {
+            var MyAppUrlSettings = { MyUsefulUrl : '@Url.Action("BuscaCEP", "Pessoa")' }
+            $.ajax({
+                url: MyAppUrlSettings.MyUsefulUrl,
+                data: { _cep: $("#cep").val() },
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                type: "GET",
+                success: function (data) {
+                    $(data.Result).each(function () {
+                        var tipologradouro = this.tipo_logradouro.toUpperCase();
+                        var logradouro = this.logradouro.toUpperCase();
+                        var cidade = this.id_cidade;
+                        var bairro = this.id_bairro;
+
+                        $("#idTipoLogradouro").val($('option:contains("' + tipologradouro + '")').val());
+                        $("#endereco").val(logradouro);
+                        $("#complemento").val(this.complemento);
+                        $("#uf").val(this.uf);
+                        $("#idCidade").attr('disabled', false);
+                        MontaCidade(cidade,bairro);
+                    });
+                },
+                    error: function (error) {
+                }
+            });
+        }
+
+        function SomenteNumero(e) {
+            var tecla = (window.event) ? event.keyCode : e.which;
+            if ((tecla > 47 && tecla < 58)) return true;
+            else {
+                if (tecla == 8 || tecla == 0) return true;
+                else return false;
+            }
+        }
+
+        function MontaBairro(c,b) {
+            var cidade = $("#idCidade").val();
+            if (cidade == "") {
+                $('#idBairro').empty();
+                $('select#idBairro').val('');
+                $("#idBairro").attr('disabled', true);
+            } else {
+                $("#idBairro").attr('disabled', false);
+                $.getJSON('@Url.Action("ListaBairro","Pessoa")', { 'id': cidade }, function (data) {
+                    if (data.length > 0) {
+                        $('#idBairro').empty();
+                        $('#idBairro').append('<option value=""></option>');
+                        for (var i = 0; i < data.length; i++) {
+                            $('#idBairro').append('<option value="' + data[i].idBairro + '">' + data[i].bairro + '</option>');
+                        }
+                        if (b != "") {$("#idBairro").val(b);}
+                    }
+                });
+            }
+        }
+
+        function MontaCidade(c,b) {
+            var valorEscolhido = $("#uf :selected").text();
+            if (valorEscolhido == "" || valorEscolhido == 'Estrangeiro') {
+                $('#idCidade').empty();
+                $('select#idCidade').val('');
+                $("#idCidade").attr('disabled', true);
+                $('#idBairro').empty();
+                $('select#idBairro').val('');
+                $("#idBairro").attr('disabled', true);
+            } else {
+                $("#idCidade").attr('disabled', false);
+                var SiglaUF = $('#uf').val();
+                var optionCidade = '#idCidade option'
+                if (SiglaUF != "") {
+                    $.getJSON('@Url.Action("ListaCidade","Pessoa")', { 'SiglaUf': SiglaUF }, function (data) {
+                        if (data.length > 0) {
+                            $('#idCidade').empty();
+                            $('#idCidade').append('<option value=""></option>');
+                            for (var i = 0; i < data.length; i++) {
+                                $('#idCidade').append('<option value="' + data[i].idCidade + '">' + data[i].cidade + '</option>');
+                            }
+                            if (c != "") {
+                                $("#idCidade").val(c);
+                                $("#idBairro").attr('disabled', false);
+                                MontaBairro(c,b);
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    </script>
+}

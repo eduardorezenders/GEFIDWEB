@@ -1,0 +1,88 @@
+﻿@model EntidadesSOL.contato
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>contato</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoContato.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoContato.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tratamentoPessoa.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tratamentoPessoa.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nomeContato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomeContato)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ocupacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ocupacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.abreviacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.abreviacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idOperador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idOperador)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idEstruturaOrgao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idEstruturaOrgao)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,77 @@
+﻿@model EntidadesDAL.pessoa
+
+@{
+    ViewBag.Title = "SMSAPP";
+}
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>Contato</h4>
+        @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-default glyphicon glyphicon-hand-left", @title = "Voltar para lista" })
+        @Html.ActionLink(" ", "Edit", new { id = Model.idPessoa }, new { @class = "btn btn-default glyphicon glyphicon-edit", @title = "Editar contato" })
+    </div>
+</div>
+<hr />
+
+<div>
+
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nomeCompleto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomeCompleto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dataNascimento)
+        </dt>
+
+        <dd>
+            @{string dtn = String.Format("{0:dd/MM/yyyy}", Model.dataNascimento); }
+            @Html.DisplayName(dtn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cpf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cpf)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoGenero.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoGenero.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.facebook)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.facebook)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.whatsapp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.whatsapp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ativo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ativo)
+        </dd>
+    </dl>
+</div>
+

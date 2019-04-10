@@ -1,0 +1,56 @@
+﻿@model IEnumerable<EntidadesDAL.pessoa>
+
+@{
+    Layout = "~/Views/Shared/_LayoutPDF.cshtml";
+    ViewBag.Title = "_PDFView";
+}
+
+<h3>Contatos</h3>
+<br />
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.nomeCompleto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dataNascimento)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.cpf)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tipoGenero.descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ativo)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeCompleto)
+            </td>
+            <td>
+                @{string dtn = String.Format("{0:dd/MM/yyyy}", item.dataNascimento); }
+                @Html.DisplayName(dtn)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.cpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tipoGenero.descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ativo)
+            </td>
+        </tr>
+    }
+
+</table>

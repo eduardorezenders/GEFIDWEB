@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "RRSMSE";
+}
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>SMS Relatórios</h4>
+        <h5>Relatório de respostas dos SMS enviados</h5>
+        @Html.ActionLink(" ", "RRSMSE", null, new { @class = "btn btn-default glyphicon glyphicon-hand-left", @title = "Voltar para lista" })
+    </div>
+</div>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Conteúdo Recebido")
+        </th>
+        <th>
+            @Html.DisplayName("Data Recebido")
+        </th>
+        <th>
+            @Html.DisplayName("Clelular")
+        </th>
+        <th>
+            @Html.DisplayName("Conta")
+        </th>
+        <th>
+            @Html.DisplayName("Conteúdo Enviado")
+        </th>
+    </tr>
+
+    @foreach (var item in ViewBag.retornoComtele.Object)
+    {
+        <tr>
+            <td>
+                @item.ReceivedContent
+            </td>
+            <td>
+                @item.ReceivedDate
+
+            </td>
+            <td>
+                @item.Sender
+            </td>
+            <td>
+                @item.SenderName
+            </td>
+            <td>
+                @item.SentContent
+            </td>
+        </tr>
+    }
+</table>
+
+

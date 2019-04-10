@@ -1,0 +1,102 @@
+﻿@model EntidadesDAL.cliente
+
+@{
+    ViewBag.Title = "SMSAPP";
+}
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>Clientes</h4>
+        @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-default glyphicon glyphicon-hand-left", @title = "Voltar para lista" })
+        @Html.ActionLink(" ", "Edit", new { id = Model.idCliente }, new { @class = "btn btn-default glyphicon glyphicon-edit", @title = "Editar cliente" })
+    </div>
+</div>
+<hr />
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.razaoSocial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.razaoSocial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nomeTitular)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomeTitular)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dtCadastro)
+        </dt>
+
+        <dd>
+            @{ string datacricao = String.Format("{0:dd/MM/yyyy}", Model.dtCadastro); }
+            @Html.DisplayName(datacricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cpf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cpf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cnpj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cnpj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chaveapi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chaveapi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ativo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ativo)
+        </dd>
+
+    </dl>
+</div>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Licença")
+        </dt>
+            <dd>
+                @foreach (var item in Model.licenca)
+                {
+                    @Html.DisplayName(item.chave)
+                    <br />
+                }
+            </dd> 
+    </dl>
+</div>
+
+
+

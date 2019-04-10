@@ -1,0 +1,82 @@
+﻿@model EntidadesSOL.contato
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>contato</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoContato.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoContato.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tratamentoPessoa.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tratamentoPessoa.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nomeContato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomeContato)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ocupacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ocupacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.abreviacao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.abreviacao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idOperador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idOperador)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idEstruturaOrgao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idEstruturaOrgao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idContato }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

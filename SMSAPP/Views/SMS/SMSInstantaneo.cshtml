@@ -1,0 +1,88 @@
+﻿@model SMSAPP.ViewModels.SMSInstantaneoVM
+
+@{
+    ViewBag.Title = "SMSInstantaneo";
+}
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>SMS Instantâneo</h4><h5>Envie SMS agora mesmo para um ou mais contatos.</h5>
+    </div>
+</div>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sender, "Remetente", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Sender, new { htmlAttributes = new { @title = "Remetente", @data_toggle = "popover", @data_trigger = "hover", @data_content = "Campo usado apenas para organizar os relatórios.", @Value=Session["ULRZ"], @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Sender, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Receivers, "Destinatário(s)", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Receivers, htmlAttributes: new { @title = "Destinatário", @data_toggle = "popover", @data_trigger = "hover", @data_content = "Campo usado para digitar os números de celular que receberão o SMS. Formato da digitação: DDD+NUMERO, ex.: 21999999999, para mais de um número use como separador a vírgula (,), ex.: 21999999999,21988888888.", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Receivers, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Content, "Mensagem pré-definida", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Mensagem", null, String.Empty, htmlAttributes: new { @title = "Mensagem: pré-definida ou manual", @data_toggle = "popover", @data_trigger = "hover", @data_content = "Selecione uma mensagem pré-definida ou digite manualmente a mensagem que deseja enviar.", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Content, "Mensagem manual", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Content, htmlAttributes: new { @title = "Mensagem: manual ou pré-definida", @data_toggle = "popover", @data_trigger = "hover", @data_content = "Selecione uma mensagem pré-definida ou digite manualmente a mensagem que deseja enviar.", @class = "form-control", id = "txtmsg", onKeyDown = "contaLetras()", onKeyUp = "!contaLetras()" })
+                    <label id="contador"></label>
+                    @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Emviar SMS" class="btn btn-success" onclick="JavascriptFunction()" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        function contaLetras() {
+            var maxlimit = 1024;
+
+            // pega o label
+            var label = document.getElementById('contador');
+
+            // paga a textbox
+            var textbox = document.getElementById('txtmsg');
+
+            // passou do limite?
+            if (textbox.value.length > maxlimit)
+                // trim!
+                textbox.value = textbox.value.substring(0, maxlimit);
+            else // conta
+                label.innerText = (textbox.value.length) + " de " + maxlimit + " caracteres usados.";
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
+}

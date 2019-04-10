@@ -1,0 +1,37 @@
+﻿@model EntidadesDAL.tipoTelefone
+
+@{
+    ViewBag.Title = "SMSAPP";
+}
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>Tipo de Telefone</h4>
+        @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-default glyphicon glyphicon-hand-left", @title = "Voltar para lista" })
+        @Html.ActionLink(" ", "Edit", new { id = Model.idTipoTelefone }, new { @class = "btn btn-default glyphicon glyphicon-edit", @title = "Editar Tipo de Telefone" })
+    </div>
+</div>
+<hr />
+
+
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ativo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ativo)
+        </dd>
+
+    </dl>
+
+

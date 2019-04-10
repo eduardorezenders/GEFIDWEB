@@ -1,0 +1,57 @@
+﻿@model PagedList.IPagedList<EntidadesDAL.actionsLog>
+@using PagedList.Mvc;
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Controlador")
+        </th>
+        <th>
+            @Html.DisplayName("Ação")
+        </th>
+        <th>
+            @Html.DisplayName("IP")
+        </th>
+        <th>
+            @Html.DisplayName("Data e Hora")
+        </th>
+        <th>
+            @Html.DisplayName("Usuário")
+        </th>
+        <th>
+            @Html.DisplayName("CPF")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Controller)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Action)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cpf)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+
+    Página: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Logs",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "CSU";
+}
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>SMS Relatórios</h4>
+        <h5>Consulte o saldo de seu usuário</h5>
+        @Html.ActionLink(" ", "CSU", null, new { @class = "btn btn-default glyphicon glyphicon-hand-left", @title = "Voltar para lista" })
+    </div>
+</div>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Conteúdo SMS")
+        </th>
+        <th>
+            @Html.DisplayName("Status SMS")
+        </th>
+        <th>
+            @Html.DisplayName("Clelular SMS")
+        </th>
+        <th>
+            @Html.DisplayName("Data SMS")
+        </th>
+        <th>
+            @Html.DisplayName("Data Agendamento")
+        </th>
+        <th>
+            @Html.DisplayName("Status Final")
+        </th>
+        <th>
+            @Html.DisplayName("Mensagem")
+        </th>
+    </tr>
+
+    @foreach (var item in ViewBag.retornoComtele.Object)
+    {
+        <tr>
+            <td>
+                @item.Content
+            </td>
+            <td>
+                @if (item.DlrStatus == "Delivered")
+                {<span>Entregue</span>}
+                @if (item.DlrStatus == "Undelivered")
+                {<span>Não entregue</span>}
+                @if (item.DlrStatus == "Rejected")
+                {<span>Telefone rejeitado, possivelmente em formato incorreto</span>}
+                @if (item.DlrStatus == "Expired")
+                {<span>Mensagem excedeu o limite de tentativas de entrega da operadora</span>}
+                @if (item.DlrStatus == "Accepted")
+                {<span>Telefone em formato correto, mensagem está na base da operadora para entrega</span>}
+            </td>
+            <td>
+                @item.Receiver
+            </td>
+            <td>
+                @item.RequestDate
+            </td>
+            <td>
+                @item.ScheduleDate
+            </td>
+            <td>
+                @if (item.Status == "Delivered")
+                {<span>Entregue</span>}
+                @if (item.Status == "Processed")
+                {<span>Mensagem em processamento, está na base da operadora para entrega</span>}
+                @if (item.Status == "Error")
+                {<span>Ocorreu erro no processo de envio do SMS</span>}
+            </td>
+            <td>
+                @item.SystemMessage
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+
+
+
+
+

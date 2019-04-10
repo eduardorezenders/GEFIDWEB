@@ -1,0 +1,14 @@
+﻿
+                @using (Html.BeginForm("LogOff", "Acesso", FormMethod.Get, new { id = "logoutForm" }))
+    {
+                    @Html.AntiForgeryToken()
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            @Html.ActionLink("Olá " + Session["ULN"].ToString().ToUpper() + " " + Session["ULSN"].ToString().ToUpper() + "!", "TrocarSenha", "Acesso", routeValues: null, htmlAttributes: new { title = "TrocarSenha" })
+                        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Fazer logoff</a></li>
+    </ul>
+    }
+
+

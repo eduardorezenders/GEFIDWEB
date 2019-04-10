@@ -1,0 +1,45 @@
+﻿@model EntidadesDAL.campanha
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>Clientes</h4>
+        @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-default glyphicon glyphicon-hand-left", @title = "Voltar para lista" })
+        @Html.ActionLink(" ", "Edit", new { id = Model.idCampanha }, new { @class = "btn btn-default glyphicon glyphicon-edit", @title = "Editar campanha" })
+    </div>
+</div>
+<hr />
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dtCriacao)
+        </dt>
+
+        <dd>
+            @{ string datacricao = String.Format("{0:dd/MM/yyyy}", Model.dtCriacao); }
+            @Html.DisplayName(datacricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ativo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ativo)
+        </dd>
+
+    </dl>
+</div>
+

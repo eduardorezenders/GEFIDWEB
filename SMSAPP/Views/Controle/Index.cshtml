@@ -1,0 +1,85 @@
+﻿@model IEnumerable<EntidadesDAL.controle>
+
+@{
+    ViewBag.Title = "SMSAPP";
+    string[,] perfil = (string[,])Session["ULPR"];
+}
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>Controles</h4>
+        @Html.ActionLink(" ", "Create", null, new { @class = "btn btn-default glyphicon glyphicon-file", @title = "Novo controle" })
+        @Html.ActionLink(" ", "GeraPDF", null, new { @class = "btn btn-default glyphicon glyphicon-print", @title = "Imprimir para PDF" })
+    </div>
+</div>
+<br />
+<table class="table table-condensed table-striped" style="width:100%;">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.priSms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.segSms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.terSms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quaSms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quiSms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.aCada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.envioAuto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.facebook)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.whatsapp)
+        </th>
+        <th>Ações</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.priSms)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.segSms)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.terSms)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quaSms)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quiSms)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.aCada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.envioAuto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.facebook)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.whatsapp)
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id = item.idControle }, new { @class = "btn btn-default btn-xs glyphicon glyphicon-edit", @title = "Editar controle" })
+            @Html.ActionLink(" ", "Details", new { id = item.idControle }, new { @class = "btn btn-default btn-xs glyphicon glyphicon-list-alt", @title = "Detalhes do controle" })
+        </td>
+    </tr>
+    }
+
+</table>

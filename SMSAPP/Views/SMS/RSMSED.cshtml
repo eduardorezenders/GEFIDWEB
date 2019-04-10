@@ -1,0 +1,62 @@
+﻿@model SMSAPP.ViewModels.PesquisaDTVM
+
+@{
+    ViewBag.Title = "RSMSED";
+}
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>SMS Relatórios</h4>
+        <h5>Relatório de SMS enviados - Detalhado</h5>
+    </div>
+</div>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.tipo, "Tipo de SMS", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="radio col-md-10">
+                <label>@Html.RadioButtonFor(model => model.tipo, "Todos", new { @checked = true }) Todos </label><br />
+                <label>@Html.RadioButtonFor(model => model.tipo, "Entregues") Entregues </label><br />
+                <label>@Html.RadioButtonFor(model => model.tipo, "Não entregues") Não entregues </label>
+                @Html.ValidationMessageFor(model => model.tipo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dtInicial, "Data Inicial", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dtInicial, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dtInicial, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.dtFinal, "Data Final", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.dtFinal, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dtFinal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Gerar Relatório" class="btn btn-primary" onclick="JavascriptFunction();" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

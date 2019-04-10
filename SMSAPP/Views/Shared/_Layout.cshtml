@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title Numero 1 Marketing</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style type="text/css">
+        .uppercase { text-transform: uppercase; }
+        a {
+            text-decoration: none;
+            color: #000; }
+        a:hover {
+            text-decoration: none;
+            color: #F00; }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="col-md-12 col-lg-12" style="padding-right:0">
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @Html.ActionLink("SMSAPP", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    </div>
+
+                    @if (Session["ULID"] != null)
+                    {
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li>@Html.ActionLink("Início", "Index", "Home")</li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manutenção <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="@Url.Action("Index", "Instituicao")" onclick="JavascriptFunction()">Clientes</a> </li>
+                                        <li><a href="@Url.Action("Index", "Pessoa")" onclick="JavascriptFunction()">Contatos</a> </li>
+                                        <li><a href="@Url.Action("Index", "Campanha")" onclick="JavascriptFunction()">Campanhas</a> </li>
+                                        <li class="divider"></li>
+                                        <li><a href="@Url.Action("Index", "Mensagem")" onclick="JavascriptFunction()">Mensagens Pré-definidas</a> </li>
+                                        <li class="divider"></li>
+                                        <li><a href="@Url.Action("Index", "TipoGenero")" onclick="JavascriptFunction()">Genêros</a> </li>
+                                        <li><a href="@Url.Action("Index", "TipoTelefone")" onclick="JavascriptFunction()">Tipos de Telefone</a> </li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Controles <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="@Url.Action("Index", "Controle")" onclick="JavascriptFunction()">Controles SMS</a> </li>
+                                        <li class="divider"></li>
+                                        <li><a href="@Url.Action("Index", "AcessoGrupo")" onclick="JavascriptFunction()">Grupos de Usuários</a> </li>
+                                        <li><a href="@Url.Action("Index", "AcessoPerfil")" onclick="JavascriptFunction()">Perfis de Grupo</a> </li>
+                                        <li><a href="@Url.Action("Index", "Acesso")" onclick="JavascriptFunction()">Acessos</a> </li>
+                                        <li><a href="@Url.Action("Logs", "Acesso")" onclick="JavascriptFunction()">Logs</a> </li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Solicitações <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="@Url.Action("Index", "TipoAssunto")" onclick="JavascriptFunction()">Tipos de Assunto</a> </li>
+                                        <li><a href="@Url.Action("Index", "TipoContato")" onclick="JavascriptFunction()">Tipos de Contato</a> </li>
+                                        <li><a href="@Url.Action("Index", "TipoPrioridade")" onclick="JavascriptFunction()">Tipos de Prioridade</a> </li>
+
+                                        <li class="divider"></li>
+                                        <li><a href="@Url.Action("Index", "Contato")" onclick="JavascriptFunction()">Contatos de Serviços</a> </li>
+
+                                    </ul>
+                                </li>
+
+                                @*<li>@Html.ActionLink("Relatórios", "Index", "Home")</li>*@
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Relatórios <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="@Url.Action("RSMSED", "SMS")" onclick="JavascriptFunction()">Relatório de SMS enviados - Detalhado</a> </li>
+                                        <li><a href="@Url.Action("RSMSEC", "SMS")" onclick="JavascriptFunction()">Relatório de SMS enviados - Consolidado</a> </li>
+                                        <li><a href="@Url.Action("RRSMSE", "SMS")" onclick="JavascriptFunction()">Relatório de respostas dos SMS enviados</a> </li>
+                                        <li><a href="@Url.Action("HRU", "SMS")" onclick="JavascriptFunction()">Histórico de recarga de seus usuários</a> </li>
+                                        <li><a href="@Url.Action("CSU", "SMS")" onclick="JavascriptFunction()">Consulte o saldo de seus usuários</a> </li>
+                                        <li><a href="@Url.Action("CSU2", "SMS")" onclick="JavascriptFunction()">Consulte o saldo de seu usuário</a> </li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ferramentas <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="@Url.Action("Importacao", "Pessoa")" onclick="JavascriptFunction()">Importação de Contatos</a> </li>
+                                        <li><a href="@Url.Action("Atribuicao", "Pessoa")" onclick="JavascriptFunction()">Atribuição de Contatos em Campanhas</a> </li>
+                                        <li class="divider"></li>
+                                        <li><a href="@Url.Action("SMSInstantaneo", "SMS")" onclick="JavascriptFunction()">Enviar SMS Instantâneo</a> </li>
+                                        <li><a href="@Url.Action("SMSAniversario", "SMS")" onclick="JavascriptFunction()">Enviar SMS de Aniversário</a> </li>
+                                        <li><a href="@Url.Action("SMSCampanha", "SMS")" onclick="JavascriptFunction()">Enviar SMS de Campanha</a> </li>
+                                        <li class="divider"></li>
+                                        <li><a href="@Url.Action("Index", "Mensagem")" onclick="JavascriptFunction()">Enviar WHATSAPP</a> </li>
+                                        <li class="divider"></li>
+                                        <li><a href="@Url.Action("Index", "Mensagem")" onclick="JavascriptFunction()">Chat Facebook</a> </li>
+                                    </ul>
+                                </li>
+                                @*<li>@Html.ActionLink("Sobre", "About", "Home")</li>*@
+                                <li>@Html.ActionLink("Ajuda", "Contact", "Home")</li>
+                            </ul>
+
+                            @Html.Partial("_LoginPartial")
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main" class="container-fluid" style="margin-top: 5px">
+        <div class="row col-md-12 col-lg-12">
+            @RenderBody()            
+        </div>
+    </div>
+
+    <div class="page-footer navbar-fixed-bottom">
+        <div class="footer text-left col-md-12 col-lg-12">
+            <h5>Copyright &copy; 2018 &middot; All Rights Reserved &middot; Visite nossa página: <a href="https://www.n1contactcenter.com.br/" target="_blank">n1contactcenter.com.br</a></h5>
+        </div>
+    </div>
+
+    <div id="divLoading" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: #666666; z-index: 30001;     opacity: .8; filter: alpha(opacity=70); display:none">
+        <p style="position: absolute; top: 30%; left: 45%; color: White; text-align:center;">
+            <img src="~/Imagens/ajax-loading.gif"><br />Carregando...
+        </p>
+    </div>
+
+    <div class="modal" id="Modal" role="dialog" style="margin:30px" aria-hidden="true" tabindex="-1"></div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <script type="text/javascript" language="javascript">
+                function JavascriptFunction() {
+                    var url = '@Url.Action("PostMethod", "Home")';
+                    $("#divLoading").show();
+                    $.post(url, null,
+                            function (data) {
+                                $("#PID")[0].innerHTML = data;
+                                $("#divLoading").hide();
+                            });
+                }
+    </script>
+
+    @{Html.RenderPartial("~/Views/Shared/_Mensagem.cshtml");}
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

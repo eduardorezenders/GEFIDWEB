@@ -1,0 +1,98 @@
+﻿@model SMSAPP.ViewModels.SMSAniversarioVM
+
+@{
+    ViewBag.Title = "SMSAniversário";
+}
+
+<div class="row">
+    <div class="col-md-12 text-left">
+        <h4>SMS Aniversário</h4><h5>Envie SMS agora mesmo para seus aniversariantes.</h5>
+        @*@Html.ActionLink(" ", "Index", "Home", null, new { @class = "btn btn-default glyphicon glyphicon-hand-left", @title = "Início" })*@
+    </div>
+</div>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.dtInicial, "Data Inicial", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.dtInicial, new { htmlAttributes = new { @class = "form-control", Value=DateTime.Now } })
+                    @Html.ValidationMessageFor(model => model.dtInicial, "", new { @class = "text-danger" })
+                </div>
+            </div>
+                <div class="form-group">
+                @Html.LabelFor(model => model.dtFinal, "Data Final", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.dtFinal, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.dtFinal, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sender, "Remetente", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Sender, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Sender, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.Receivers, "Destinatários", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Receivers, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Receivers, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Content, "Mensagem pré-definida", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Mensagem", null, String.Empty, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Content, "Mensagem manual", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Content, htmlAttributes: new { @class = "form-control", id = "txtmsg", onKeyDown = "contaLetras()", onKeyUp = "!contaLetras()" })
+                    <label id="contador"></label>
+                    @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Emviar SMS" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+      function contaLetras() {
+          var maxlimit = 500;
+
+          // pega o label
+          var label = document.getElementById('contador');
+
+          // paga a textbox
+          var textbox = document.getElementById('txtmsg');
+
+          // passou do limite?
+          if (textbox.value.length > maxlimit)
+              // trim!
+               textbox.value = textbox.value.substring(0, maxlimit);
+          else // conta
+               label.innerText = (maxlimit - textbox.value.length) + " caracteres restantes";
+       }
+    </script>
+}

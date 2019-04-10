@@ -1,0 +1,75 @@
+﻿@model SMSAPP.ViewModels.AcessoVM
+
+@{
+    ViewBag.Title = "Efetuar Login";
+}
+
+
+@using (Html.BeginForm("Login", "Acesso", FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+    
+<h3>@ViewBag.Title.</h3>
+<div class="row"><br /></div>
+<div class="row">
+    <div class="col-md-6" style="text-align:center">
+        @*<section id="socialLoginForm">*@
+        @*@Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })*@
+        <p>@*<img src="~/Imagens/logo_caarj.jpg" />*@
+        <p>
+            <br /><br />
+            <img src="~/Imagens/icone.jpg" height="350" />
+            @*</section>*@
+    </div>
+
+    <div class="col-md-6 well" style="height:350px; width:550px;">
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.login, "Login de Cliente:", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.login, new { htmlAttributes = new { @class = "form-control", @onkeypress = "return SomenteNumero(event)" } })
+                    @Html.ValidationMessageFor(model => model.login, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.cpf, "CPF do Usuário:", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.cpf, new { htmlAttributes = new { @class = "form-control", @name="cpf", @onkeypress = "return SomenteNumero(event)" } })
+                    @Html.ValidationMessageFor(model => model.cpf, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.senha, "Senha de usuário:", htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-5">
+                    @Html.EditorFor(model => model.senha, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.senha, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-4 col-md-10">
+                    <input type="submit" value="Login" name="btnLogin" class="btn btn-default" title="Fazer login na aplicação"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts{
+    <script type="text/javascript">
+        function SomenteNumero(e) {
+            var tecla = (window.event) ? event.keyCode : e.which;
+            if ((tecla > 47 && tecla < 58)) return true;
+            else {
+                if (tecla == 8 || tecla == 0) return true;
+                else return false;
+            }
+        }
+    </script>
+}

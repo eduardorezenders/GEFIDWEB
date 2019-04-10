@@ -1,0 +1,53 @@
+﻿@model IEnumerable<EntidadesDAL.mensagem>
+
+@{
+    Layout = "~/Views/Shared/_LayoutPDF.cshtml";
+    ViewBag.Title = "_PDFView";
+}
+
+<h3>Mensagens</h3>
+<br />
+
+<table class="table">
+    <tr>
+        @*<th>
+                @Html.DisplayNameFor(model => model.cliente.razaoSocial)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.texto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dtCriacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dtAltercao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ativo)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.cliente.razaoSocial)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.texto)
+            </td>
+            <td>
+                @{string dtc = String.Format("{0:dd/MM/yyyy}", item.dtCriacao); }
+                @Html.DisplayName(dtc)
+            </td>
+            <td>
+                @{string dta = String.Format("{0:dd/MM/yyyy}", item.dtAltercao); }
+                @Html.DisplayName(dta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ativo)
+            </td>
+        </tr>
+    }
+
+</table>
